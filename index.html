@@ -1,18 +1,372 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>electric-portfolio-palette</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-    <meta property="og:image" content="/og-image.png" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tien Lai - QA Engineer & Web Developer</title>
+  <meta name="description" content="Tien Lai's personal portfolio" />
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+    
+    /* Utility classes */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: #D946EF;
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background: #c23ad8;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: #D946EF;
+      border: 2px solid #D946EF;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(217, 70, 239, 0.1);
+    }
+    
+    /* Header styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      padding: 10px 0;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #D946EF 0%, #ea384c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: #D946EF;
+    }
+    
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    /* Hero section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    
+    .hero-bg::before {
+      content: "Background Video Placeholder";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, rgba(217, 70, 239, 0.2), rgba(234, 56, 76, 0.2));
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .hero-text {
+      max-width: 600px;
+    }
+    
+    .hero-text h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: white;
+    }
+    
+    .hero-text h1 span {
+      background: linear-gradient(90deg, #D946EF 0%, #ea384c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradient-animation 5s ease infinite;
+    }
+    
+    .hero-text h2 {
+      font-size: 28px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 24px;
+    }
+    
+    .hero-text p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
+      max-width: 400px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .profile-image {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #D946EF, #ea384c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    
+    .scroll-down svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+    }
+    
+    /* Animations */
+    @keyframes gradient-animation {
+      0%, 100% {
+        background-position: left center;
+      }
+      50% {
+        background-position: right center;
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+    
+    /* Media queries */
+    @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-text {
+        margin-bottom: 40px;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .profile-image {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+      }
+      
+      .nav-links li {
+        margin: 15px 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<body>
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Tien Lai</a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Hi, I'm <span>Tien Lai</span></h1>
+        <h2>QA Engineer & Web Developer</h2>
+        <p>I build seamless web experiences and ensure quality in software products.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#" class="btn btn-outline">Download Resume</a>
+        </div>
+      </div>
+      <div class="profile-image">
+        Portrait Placeholder
+      </div>
+    </div>
+    <a href="#about" class="scroll-down" aria-label="Scroll down">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    </a>
+  </section>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    menuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on links
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
 </html>
